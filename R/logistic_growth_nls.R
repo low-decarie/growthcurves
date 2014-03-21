@@ -53,11 +53,13 @@ logistic_growth_nls<-function(time, abundance, do.interval=F){
     
     #add confidence interval
     interval<-try(confint(culture.model))   
-    if(any(class(interval)=="try-error", !do.interval)){
+    if(all(class(interval)=="try-error", do.interval)){
       fitted.readings$K.lower<-NA
       fitted.readings$K.upper<-NA
       fitted.readings$r.lower<-NA
-      fitted.readings$r.upper<-NA}else{
+      fitted.readings$r.upper<-NA}
+    
+    if(all(!class(interval)=="try-error", do.interval)){
       fitted.readings$r.lower<-interval["r", "2.5%"]
       fitted.readings$r.upper<-interval["r", "97.5%"]
       fitted.readings$K.lower<-interval["K", "2.5%"]

@@ -2,7 +2,7 @@
 \alias{logistic_growth_nls}
 \title{logistic_growth_nls}
 \usage{
-logistic_growth_nls(time, abundance, do.interval = T)
+logistic_growth_nls(time, abundance, do.interval = F)
 }
 \arguments{
   \item{time}{Numeric vector of time since start of
