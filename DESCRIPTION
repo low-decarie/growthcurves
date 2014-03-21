@@ -1,0 +1,10 @@
+Package: growthcurves
+Type: Package
+Title: estimates of the parameters of growth curves
+Version: 1.0
+Date: 2014-03-21
+Author: Etienne Low-Décarie
+Maintainer: Etienne Low-Décarie <etienne.decarie@gmail.com>
+Description: estimates of the parameters of growth curves using non-linear
+    least-square or maximum likelihood
+License: GPL (>= 2)

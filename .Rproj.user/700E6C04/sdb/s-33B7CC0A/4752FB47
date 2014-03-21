@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: growthcurves\nType: Package\nTitle: estimates of the parameters of growth curves\nVersion: 1.0\nDate: 2014-03-21\nAuthor: Etienne Low-Décarie\nMaintainer: Etienne Low-Décarie <etienne.decarie@gmail.com>\nDescription: estimates of the parameters of growth curves using non-linear\n    least-square or maximum likelihood\nLicense: GPL (>= 2)\n",
+    "created" : 1395407495295.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1830493836",
+    "id" : "4752FB47",
+    "lastKnownWriteTime" : 1395408488,
+    "path" : "~/Documents/R/Useful-R-functions/growth_curves/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}
