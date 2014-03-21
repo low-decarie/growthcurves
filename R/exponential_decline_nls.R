@@ -1,4 +1,4 @@
-#' exponential_growth_nls
+#' exponential_decline_nls
 #'
 #' Least-squares estimates of the parameters of a exponential growth curve
 #'
@@ -14,16 +14,16 @@
 #' head(fitted.readings)
 #' @export
 
-exponential_growth_nls<-function(time, abundance, do.interval=F){
-
+exponential_decline_nls<-function(time, abundance, do.interval=F){
+  
   
   model<-try(nls(formula =abundance ~ abundance0 * 2 ^ (growth.rate * time),
-                      start = list(abundance0 = min(abundance,na.rm=T),
-                                   growth.rate = 1),
-                      na.action=na.exclude,
-                     algorithm="port",
-                     lower=c(0,0),
-                     upper=Inf))
+                 start = list(abundance0 = max(abundance,na.rm=T),
+                              growth.rate = -1),
+                 na.action=na.exclude,
+                 algorithm="port",
+                 lower=c(0,-Inf),
+                 upper=c(Inf,0)))
   
   fitted.readings <- data.frame(time,abundance)
   
@@ -47,8 +47,8 @@ exponential_growth_nls<-function(time, abundance, do.interval=F){
       fitted.readings$r.upper<-NA
     }
     if(all(!class(interval)=="try-error", do.interval)){
-    fitted.readings$r.lower<-interval["growth.rate", "2.5%"]
-    fitted.readings$r.upper<-interval["growth.rate", "97.5%"]
+      fitted.readings$r.lower<-interval["growth.rate", "2.5%"]
+      fitted.readings$r.upper<-interval["growth.rate", "97.5%"]
     }
     
   }

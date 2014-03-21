@@ -1,2 +1,3 @@
+export(exponential_decline_nls)
 export(exponential_growth_nls)
 export(logistic_growth_nls)
