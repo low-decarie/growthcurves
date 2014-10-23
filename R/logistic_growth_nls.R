@@ -15,9 +15,12 @@
 #' @export
 
 
-logistic_growth_nls<-function(time, abundance, do.interval=F){
+logistic_growth_nls<-function(time, abundance, do.interval=F,r=NULL,
+                              K=NULL,
+                              N0=NULL){
 
-  start.values=c("K"=max(abundance, na.rm=T), "r"=1, "N0"=min(abundance, na.rm=T))
+if(is.null(r)){
+  start.values=c("K"=max(abundance, na.rm=T), "r"=1, "N0"=min(abundance, na.rm=T))}else{start.values=c("K"=K,"r"=r,"N0"=N0)}
   
   
   culture.model <- try(nls(formula=abundance ~(K*N0*exp(r*time) ) / (K + N0 * (exp(r*time)-1)),
