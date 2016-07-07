@@ -15,12 +15,30 @@
 #' @export
 
 
+<<<<<<< Updated upstream
 logistic_growth_nls<-function(time, abundance, do.interval=F,r=NULL,
                               K=NULL,
                               N0=NULL){
 
 if(is.null(r)){
   start.values=c("K"=max(abundance, na.rm=T), "r"=1, "N0"=min(abundance, na.rm=T))}else{start.values=c("K"=K,"r"=r,"N0"=N0)}
+=======
+logistic_growth_nls<-function(time, abundance, do.interval=F,
+                              r=NULL,
+                              K=NULL,
+                              N0=NULL){
+
+  r_start <- try(as.numeric(coef(lm(log(abundance)~time))[2]), silent = T)
+  if(class(r_start)=="try-error")r_start <- 0.5
+  
+  if(is.null(r)){
+  start.values = c(K = max(abundance, na.rm = T),
+                   r = r_start, 
+                   N0 = max(c(min(abundance, na.rm = T),10^-3)))}else{
+                     start.values = c(K = K,
+                                      r = r, 
+                                      N0=N0)}
+>>>>>>> Stashed changes
   
   
   culture.model <- try(nls(formula=abundance ~(K*N0*exp(r*time) ) / (K + N0 * (exp(r*time)-1)),

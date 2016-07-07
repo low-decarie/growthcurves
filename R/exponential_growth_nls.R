@@ -14,16 +14,18 @@
 #' head(fitted.readings)
 #' @export
 
-exponential_growth_nls<-function(time, abundance, do.interval=F){
+exponential_growth_nls<-function(time,
+                                 abundance,
+                                 do.interval=F){
 
   
+  r_start <- try(as.numeric(coef(lm(log(abundance)~time))[2]), silent = T)
+  if(class(r_start)=="try-error")r_start <- 1
+  
   model<-try(nls(formula =abundance ~ abundance0 * 2 ^ (growth.rate * time),
-                      start = list(abundance0 = min(abundance,na.rm=T),
-                                   growth.rate = 1),
-                      na.action=na.exclude,
-                     algorithm="port",
-                     lower=c(0,0),
-                     upper=Inf))
+                      start = list(abundance0 = max(min(abundance,na.rm=T),10^-3),
+                                   growth.rate = r_start),
+                      na.action=na.exclude))
   
   fitted.readings <- data.frame(time,abundance)
   
